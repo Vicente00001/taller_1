@@ -206,5 +206,7 @@ public class SistemaImpl implements Sistema
     public String obtenerSkins() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    
     
 }
