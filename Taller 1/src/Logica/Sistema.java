@@ -18,17 +18,19 @@ public interface Sistema
     public boolean comprarPersonaje (String nombreCuenta, String nombrePersonaje);
     public String obtenerSkinsDisponibles (String nombreCuenta);
     public String obtenerInventario (String nombreCuenta);
-    public boolean recargarRP (String nombreCuenta, int monto);
+    public void recargarRP (String nombreCuenta, int monto);
     public String obtenerDatosCuenta (String nombreCuenta);
     public boolean confirmarContraseña (String nombreCuenta, String contraseña);
-    public boolean cambiarContrasela (String nombreCuenta, String contraseña);
+    public void cambiarContraseña (String nombreCuenta, String contraseña);
     public String obtenerRecaudacionRol ();
     public String obtenerRecaudacionRegion ();
     public String obtenerRecaudacionPersonaje ();
     public void bloquearJugador (String nombreCuenta);
     public String obtenerCuentasOrdenadas ();
     public String obtenerCuentas ();
-    public String obtenerSkins ();
+    public String obtenerPersonajesYSkin ();
+    public String obtenerEstadisticas ();
+    public String obtenerPersonajesRol ();
  
     
     

@@ -1,8 +1,8 @@
 Jinx,ADC,2,Jinx Elfa Buena,N,Jinx guardiana estelar,L
 Sett,TOP,1,Sett Puño del dragón,E
 Lillia,JG,1,Lillia flor espiritual,E
-Vex,MID,1,Portadora del amanecer,L
+Vex,MID,1,Vex Portadora del amanecer,L
 Jhin,ADC,2,Jhin el forajido,E,Jhin Oscuridad cosmica,E
 Kaisa,ADC,3,Kaisa angel de las balas,E,Kaisa KDA,E,Kaisa KDA Prestigiosa,L
 Lux,MID,2,Lux elemental,M,Lux guardiana estelar,E
-Ekko,MID,3,Proyecto ekko,E,Ekko guardian de las arenas,E,Ekko academia,N
+Ekko,MID,3,Proyecto Ekko,E,Ekko guardian de las arenas,E,Ekko academia,N
