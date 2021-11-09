@@ -4,6 +4,7 @@ package Logica;
 
 public interface Sistema 
 {
+    
     public boolean ingresarCuenta (String nombreCuenta, String contraseña,String nick,int nivel,int rp,String region);
     public boolean ingresarPersonaje (String nombrePersonaje, String rol);
     public boolean ingresarSkin (String nombreSkin, String calidad);
@@ -25,7 +26,7 @@ public interface Sistema
     public String obtenerRecaudacionRol ();
     public String obtenerRecaudacionRegion ();
     public String obtenerRecaudacionPersonaje ();
-    public void bloquearJugador (String nombreCuenta);
+    public boolean bloquearJugador (String nombreCuenta);
     public String obtenerCuentasOrdenadas ();
     public String obtenerCuentas ();
     public String obtenerPersonajesYSkin ();

@@ -16,6 +16,20 @@ public class SistemaImpl implements Sistema
         listaskins = new ListaSkins(1000);
     }
 
+    /**
+     * Enter the account to the general list of accounts in the system
+     * pre:
+     * 
+     * post:    
+     *      Account entered into the general list of accounts in the system
+     * @param nombreCuenta
+     * @param contraseña
+     * @param nick
+     * @param nivel
+     * @param rp
+     * @param region
+     * @return 
+     */
     @Override
     public boolean ingresarCuenta(String nombreCuenta, String contraseña, String nick, int nivel, int rp, String region) 
     {
@@ -25,6 +39,16 @@ public class SistemaImpl implements Sistema
         return ingreso;
     }
 
+    /**
+     * Enter the character to the general list of characters of the system
+     * pre:
+     * 
+     * post:
+     *      Character entered into the general list of characters in the system
+     * @param nombrePersonaje
+     * @param rol
+     * @return 
+     */
     @Override
     public boolean ingresarPersonaje(String nombrePersonaje, String rol) 
     {
@@ -34,6 +58,16 @@ public class SistemaImpl implements Sistema
         return ingreso;
     }
 
+    /**
+     * Enter the skin to the general list of system skins
+     * pre:
+     * 
+     * post:
+     *      Skin entered into the general list of system skins
+     * @param nombreSkin
+     * @param calidad
+     * @return 
+     */
     @Override
     public boolean ingresarSkin(String nombreSkin, String calidad) 
     {
@@ -43,6 +77,15 @@ public class SistemaImpl implements Sistema
         return ingreso;
     }
 
+    /**
+     * Enter the collection to the character indicated by the name.
+     * pre:
+     *      The character must exist
+     * post:
+     *      The collection is paid to the character.
+     * @param nombrePersonaje
+     * @param monto 
+     */
     @Override
     public void asociarEstadistica(String nombrePersonaje, int monto) 
     {
@@ -58,6 +101,16 @@ public class SistemaImpl implements Sistema
         }
     }
 
+    /**
+     * Enter the character to the particular list of the account name.
+     * pre:
+     *      - The account must exist.
+     *      - The character must exist.
+     * post:
+     *      The character is entered into the account's private list.
+     * @param nombreCuenta
+     * @param nombrePersonaje 
+     */
     @Override
     public void asociarPersonajeCuenta(String nombreCuenta, String nombrePersonaje) 
     {
@@ -76,6 +129,16 @@ public class SistemaImpl implements Sistema
         }
     }
 
+    /**
+     * Enter the skin to the particular list of the character's name.
+     * pre:
+     *      - The skin must exist.
+     *      - The character must exist.
+     * post:
+     *      The skin is entered into the character's particular list.
+     * @param nombrePersonaje
+     * @param nombreSkin 
+     */
     @Override
     public void asociarSkinPersonaje(String nombrePersonaje, String nombreSkin) 
     {
@@ -92,6 +155,18 @@ public class SistemaImpl implements Sistema
         }
     }
 
+    /**
+     * Enter the skin to the particular list of the name of the character of the account.
+     * pre:
+     *      - The skin must exist.
+     *      - The character must exist.
+     *      - The account must exist.
+     * post:
+     *      The skin is entered to the particular list of the character of the particular list of the account.
+     * @param nombreCuenta
+     * @param nombrePersonaje
+     * @param nombreSkin 
+     */
     @Override
     public void asociarSkinPersonajeDeCuenta(String nombreCuenta, String nombrePersonaje, String nombreSkin) 
     {
@@ -125,6 +200,16 @@ public class SistemaImpl implements Sistema
         
     }
 
+    /**
+     * Check the existence of an account in the system with the name and password
+     * pre:
+     *      - The account must exist.
+     * post:
+     * 
+     * @param nombreCuenta
+     * @param contraseña
+     * @return 
+     */
     @Override
     public boolean verificarInicio(String nombreCuenta, String contraseña) 
     {
@@ -147,6 +232,15 @@ public class SistemaImpl implements Sistema
         }
     }
 
+    /**
+     * You get the skins of a character.
+     * pre:
+     *      - The character must exist.
+     * post:
+     * 
+     * @param nombrePersonaje
+     * @return 
+     */
     @Override
     public String obtenerSkinDePersonaje(String nombrePersonaje) 
     {
@@ -170,6 +264,22 @@ public class SistemaImpl implements Sistema
         return salida;
     }
 
+    /**
+     * The skin of a specific character is purchased.
+     * pre:
+     *      - The character must exist.
+     *      - The account must exist.
+     *      - The skin must exist.
+     *      - You must have enough balance to make the purchase.
+     * post:
+     *      - The skin is added to the inventory of the account.
+     *      - The price of the skin is deducted from the account balance.
+     *      - The amount is saved in the character collection.
+     * @param nombreCuenta
+     * @param nombrePersonaje
+     * @param nombreSkin
+     * @return 
+     */
     @Override
     public boolean comprarSkin(String nombreCuenta, String nombrePersonaje, String nombreSkin)
     {
@@ -269,6 +379,14 @@ public class SistemaImpl implements Sistema
 
     }
 
+    /**
+     * Method to get the characters.
+     * pre:
+     * 
+     * post:
+     * 
+     * @return 
+     */
     @Override
     public String obtenerPersonajes() 
     {
@@ -282,6 +400,20 @@ public class SistemaImpl implements Sistema
         return salida;
     }
 
+    /**
+     * An indicated character is purchased.
+     * pre:
+     *      - The character must exist.
+     *      - The account must exist.
+     *      - You must have enough balance to make the purchase.
+     * post:
+     *      - Se agrega el personaje al inventario de la cuenta.
+     *      - Se descuenta el precio del personaje al saldo de la cuenta.
+     *      - Se guarda el monto en la recaudación de personaje.
+     * @param nombreCuenta
+     * @param nombrePersonaje
+     * @return 
+     */
     @Override
     public boolean comprarPersonaje(String nombreCuenta, String nombrePersonaje) 
     {
@@ -316,6 +448,15 @@ public class SistemaImpl implements Sistema
         }
     }
 
+    /**
+     * Method to get all the skins in the game except the ones you already have.
+     * pre:
+     *      Account must exist.
+     * post:
+     * 
+     * @param nombreCuenta
+     * @return 
+     */
     @Override
     public String obtenerSkinsDisponibles(String nombreCuenta) 
     {
@@ -335,25 +476,38 @@ public class SistemaImpl implements Sistema
                     c++;
                 }
             }
-
-
-
+            
+            int[] num = new int[listaskins.getCant()];
+            int cant=0;
             for(int i=0;i<listaskins.getCant();i++) 
             {
-                String general = listaskins.getLista()[i].getNombre();
-                for(int f=0;f<lista.length;) 
+                String skinG = listaskins.getLista()[i].getNombre();
+                for(int f=0;f<lista.length;f++) 
                 {
-                    if(general.equals(lista[f])) 
+                    String skinP = lista[f];
+                    if(skinP !=null && skinG!=null) 
                     {
-                        f++;
-                    }
-                    else 
-                    {
-                        salida += "\n   -" + i + general;
-                        break;
-                    }
+                        if(skinP.equals(skinG)) 
+                        {
+                            num[cant] = i;
+                            cant++;
+                            break;
+                        }
 
-                }    
+                    }    
+                }
+            }
+            int h=0;
+            for(int x=0;x<listaskins.getCant();x++) 
+            {
+                if(x == num[h] && h<cant) 
+                {
+                    h++;
+                }
+                else 
+                {
+                    salida+= "\n    - " + listaskins.getLista()[x].getNombre();
+                }
             }
         }
         else 
@@ -365,6 +519,15 @@ public class SistemaImpl implements Sistema
         return salida;
     }
 
+    /**
+     * Method to get all the characters on the account with their respective skins.
+     * pre:
+     *      Account must exist.
+     * post:
+     * 
+     * @param nombreCuenta
+     * @return 
+     */
     @Override
     public String obtenerInventario(String nombreCuenta) 
     {
@@ -390,6 +553,15 @@ public class SistemaImpl implements Sistema
         return salida;
     }
 
+    /**
+     * An indicated amount of rp is recharged to the account.
+     * pre:
+     *      Account must exist.
+     * post:
+     *      The amount is entered to rp of the account
+     * @param nombreCuenta
+     * @param monto 
+     */
     @Override
     public void recargarRP(String nombreCuenta, int monto) 
     {
@@ -406,6 +578,15 @@ public class SistemaImpl implements Sistema
         }
     }
 
+    /**
+     * All the account data of the entered name is obtained
+     * pre:
+     *      Account must exist.
+     * post:
+     * 
+     * @param nombreCuenta
+     * @return 
+     */
     @Override
     public String obtenerDatosCuenta(String nombreCuenta) 
     {
@@ -439,6 +620,16 @@ public class SistemaImpl implements Sistema
         return salida;
     }
 
+    /**
+     * Check the existence of the password and that it belongs to the person.
+     * pre:
+     *      Account must exist.
+     * post:
+     *      Verified password  
+     * @param nombreCuenta
+     * @param contraseña
+     * @return 
+     */
     @Override
     public boolean confirmarContraseña(String nombreCuenta, String contraseña)
     {
@@ -455,6 +646,15 @@ public class SistemaImpl implements Sistema
 
     }
 
+    /**
+     * The new password is changed to the old one
+     * pre:
+     *      Account must exist.
+     * post:
+     *      The new password is entered into the account
+     * @param nombreCuenta
+     * @param contraseña 
+     */
     @Override
     public void cambiarContraseña(String nombreCuenta, String contraseña) 
     {
@@ -470,6 +670,14 @@ public class SistemaImpl implements Sistema
         }
     }
 
+    /**
+     * Method to get the sales collection by role
+     * pre:
+     * 
+     * post:
+     * 
+     * @return 
+     */
     @Override
     public String obtenerRecaudacionRol() 
     {
@@ -506,6 +714,14 @@ public class SistemaImpl implements Sistema
         return salida;
     }
 
+    /**
+     * Method to get the sales collection by region
+     * pre:
+     * 
+     * post:
+     * 
+     * @return 
+     */
     @Override
     public String obtenerRecaudacionRegion() 
     {
@@ -605,6 +821,14 @@ public class SistemaImpl implements Sistema
         return salida;
     }
 
+    /**
+     * Method to get the collection of sales per character.
+     * pre:
+     * 
+     * post:
+     * 
+     * @return 
+     */
     @Override
     public String obtenerRecaudacionPersonaje() 
     {
@@ -620,11 +844,38 @@ public class SistemaImpl implements Sistema
         return salida;
     }
 
+    /**
+     * The player is blocked from being able to re-enter
+     * pre:
+     *      Account must exist
+     * post:
+     *      It is taken from the general account register.
+     * @param nombreCuenta 
+     * @return  
+     */
     @Override
-    public void bloquearJugador(String nombreCuenta) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean bloquearJugador(String nombreCuenta) 
+    {
+        Cuenta c = listacuentas.buscarNombre(nombreCuenta);
+        
+        if(c!=null) 
+        {
+            return listacuentas.Eliminar(nombreCuenta);            
+        }
+        else
+        {
+            throw new NullPointerException("No se encontro la cuenta");
+        }
     }
 
+    /**
+     * All accounts are obtained from highest to lowest, entered with their Nick next to the account level.
+     * pre:
+     * 
+     * post:
+     * 
+     * @return 
+     */
     @Override
     public String obtenerCuentasOrdenadas() 
     {
@@ -649,6 +900,14 @@ public class SistemaImpl implements Sistema
         return salida;
     }
 
+    /**
+     * All accounts are obtained.
+     * pre:
+     * 
+     * post:
+     *      The data output of the accounts is obtained
+     * @return 
+     */
     @Override
     public String obtenerCuentas() 
     {
@@ -672,6 +931,14 @@ public class SistemaImpl implements Sistema
         return salida;
     }
 
+    /**
+     * All characters and skins are obtained.
+     * pre:
+     * 
+     * post:
+     *      The data output of the characters and skins is obtained
+     * @return 
+     */
     @Override
     public String obtenerPersonajesYSkin() 
     {
@@ -690,6 +957,14 @@ public class SistemaImpl implements Sistema
         return salida;
     }
 
+    /**
+     * Characters are obtained for each role
+     * pre:
+     * 
+     * post:
+     *      The exit of the characters is obtained for the indicated role.
+     * @return 
+     */
     @Override
     public String obtenerPersonajesRol() 
     {
@@ -730,6 +1005,14 @@ public class SistemaImpl implements Sistema
         return salida;
     }
 
+    /**
+     * All statistics are obtained with the characters
+     * pre:
+     * 
+     * post:
+     *      Statistics data output is obtained
+     * @return 
+     */
     @Override
     public String obtenerEstadisticas() 
     {

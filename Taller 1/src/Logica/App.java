@@ -12,7 +12,10 @@ import java.util.Scanner;
 
 public class App 
 {
-
+    /**
+     * Method to read characters from entered text file
+     * @param sistema 
+     */
     public static void LeerPersonajes (SistemaImpl sistema)  
     {
         try
@@ -49,7 +52,10 @@ public class App
             System.out.println("Archivo indicado no encontrado");
         }        
     }
-    
+    /**
+     * Method to read the statistics from the entered text file
+     * @param sistema 
+     */
     public static void LeerEstadisticas (SistemaImpl sistema) 
     {
         try
@@ -76,7 +82,10 @@ public class App
             System.out.println("Archivo indicado no encontrado");
         }
     }
-    
+    /**
+     * Method to read the counts from the entered text file
+     * @param sistema 
+     */
     public static void LeerCuentas (SistemaImpl sistema) 
     {
         try
@@ -132,6 +141,30 @@ public class App
         }        
         
     }
+    
+    public static boolean buscarBloqueados(String[] bloqueados, String bloqueado) 
+    {
+        int i;
+        for(i=0;i<bloqueados.length;i++) 
+        {
+            if(bloqueados[i] !=null) 
+            {
+                if(bloqueados[i].equals(bloqueado)) 
+                {
+                    break;
+                }
+            }    
+        }
+        
+        if(i==bloqueados.length) 
+        {
+            return false;
+        }
+        else 
+        {
+            return true;
+        }
+    }
 
     public static void main(String[] args) 
     {
@@ -141,6 +174,8 @@ public class App
         LeerEstadisticas(sistema);
         
         Scanner read = new Scanner(System.in);
+        String[] bloqueados = new String[1000];
+        int z=0;
         
         System.out.print("Desea cerrar el sistema? (SI) (NO): ");
         String respuesta = "";
@@ -186,6 +221,16 @@ public class App
                     System.out.print("Ingrese su contraseña: ");
                     contraseña = read.next();
                 }
+                
+                while (buscarBloqueados(bloqueados,nombre)) 
+                {
+                    System.out.println("--- Esta cuenta se encuentra bloqueada ---");
+                    System.out.println("\n  INICIO DE SESION\n");
+                    System.out.print("Ingrese su nombre de cuenta: ");
+                    nombre = read.next();
+                    System.out.print("Ingrese su contraseña: ");
+                    contraseña = read.next();
+                }
     
             }
             
@@ -194,6 +239,12 @@ public class App
                 System.out.println("\n  REGISTRO");
                 System.out.print("Ingrese su nombre de cuenta: ");
                 String nombreR = read.next();
+                while (buscarBloqueados(bloqueados,nombreR)) 
+                {
+                    System.out.println("--- Este nombre de cuenta se encuentra bloqueado ---");
+                    System.out.print("Ingrese su nombre de cuenta: ");
+                    nombreR = read.next();
+                }                
                 System.out.print("Ingrese su contraseña: ");
                 String contraseñaR = read.next();
                 System.out.println("Ingrese su nick: ");
@@ -217,7 +268,16 @@ public class App
                     nombre = read.next();
                     System.out.print("Ingrese su contraseña: ");
                     contraseña = read.next();
-                } 
+                }
+                while (buscarBloqueados(bloqueados,nombre)) 
+                {
+                    System.out.println("--- Esta cuenta se encuentra bloqueada ---");
+                    System.out.println("\n  INICIO DE SESION\n");
+                    System.out.print("Ingrese su nombre de cuenta: ");
+                    nombre = read.next();
+                    System.out.print("Ingrese su contraseña: ");
+                    contraseña = read.next();
+                }
             }
             
             // MENU CLIENTE
@@ -480,6 +540,20 @@ public class App
                     else if(opc2.equals("g"))
                     {
                         System.out.println("\n  BLOQUEAR JUGADOR");
+                        System.out.print("\nIngrese el nombre de la cuenta a bloquear: ");
+                        String nombreC = read.next();
+                        try
+                        {
+                            if(sistema.bloquearJugador(nombreC)) 
+                            {
+                                bloqueados[z] = nombreC;
+                                z++;
+                            }
+                        }
+                        catch (Exception e) 
+                        {
+                            System.out.println(e.getMessage());
+                        }
                     }
                     else if(opc2.equals("h")) 
                     {
@@ -508,6 +582,10 @@ public class App
         
     } // TERMINO MAIN
     
+    /**
+     * Method that overwrites the worked data in your text file
+     * @param sistema 
+     */
     public static void SobreescribirPersonajes (SistemaImpl sistema) 
     {
         try
@@ -522,7 +600,10 @@ public class App
             System.out.println("Archivo no encontrado");
         }
     }
-    
+    /**
+     * Method that overwrites the worked data in your text file
+     * @param sistema 
+     */
     public static void SobreescribirCuentas (SistemaImpl sistema) 
     {
         try
@@ -537,7 +618,10 @@ public class App
             System.out.println("Archivo no encontrado");
         }        
     }
-    
+    /**
+     * Method that overwrites the worked data in your text file
+     * @param sistema 
+     */
     public static void SobreescribirEstadisticas(SistemaImpl sistema) 
     {
         try

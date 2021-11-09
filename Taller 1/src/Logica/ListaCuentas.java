@@ -77,4 +77,31 @@ public class ListaCuentas
         
     }
     
+    public boolean Eliminar(String nombre) 
+    {
+        int i ;
+        for (i =0; i< cant;i ++) 
+        {
+            if (lista[i].getNombre().equals(nombre)) 
+            {
+                break;
+            }
+        }
+        
+        if ( i == cant) 
+        {
+            return false;
+        }
+        
+        else 
+        {
+            for (int j = i; j< (cant -1); j++) 
+            {
+                lista[j] = lista[j+1];
+            }
+            cant --;
+            return true;
+        }
+    }
+    
 }
